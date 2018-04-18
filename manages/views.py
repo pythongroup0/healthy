@@ -2,8 +2,7 @@ from django.shortcuts import render
 
 
 def administerManage(request):
-    context={}
-    return render(request,'administerManage.html',context)
+    return render(request,'administerManage.html')
 
 def display(request):
     context = {}

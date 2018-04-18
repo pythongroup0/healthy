@@ -23,9 +23,6 @@ def userLogin(request):
     return render(request,'userLogin.html',{'form':form,'error_msg':error_msg})
 
 def adminLogin(request):
-    return render(request,'adminLogin.html')
-
-def adminLogin_check(request):
     error_msg = ''
     form=AdminLoginForm()
     if request.method == 'POST':

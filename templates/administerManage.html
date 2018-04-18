@@ -28,7 +28,7 @@
                     <div class="tm-blue-bg tm-left-column">                        
                         <div class="tm-logo-div text-xs-center">
                             <img src="{% static 'img/tm-neaty-logo.png' %}" alt="Logo">
-                            <h1 class="tm-site-name">Ruthy</h1> <a href="#">注销</a>
+                            <h1 class="tm-site-name">Ruthy</h1> <a href="/userLogin">注销</a>
                         </div>
                         <nav class="tm-main-nav">
                             <ul class="tm-main-nav-ul">
@@ -281,15 +281,15 @@
                                             <th>价格</th>
                                             <th>功能</th>
                                         </tr>
-                                        <!--{% for cus in session.material_all %}-->
+                                        {% for ing in session.ingredients %}-->
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ ing.ingredients_name }}</td>
+                                            <td>{{ ing.water}}</td>
+                                            <td>{{ ing.energy}}</td>
+                                            <td>{{ ing.protein}}</td>
+                                            <td>{{ ing.fat}}</td>
+                                            <td>{{ ing.saccharides }}</td>
+                                            <td>{{ ing.price }}</td>
                                             <td>
                                                 <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal4"><i class="fa fa-plus"></i></button>
                                                 <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -339,7 +339,7 @@
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                    <h4 class="modal-title" id="exampleModalLabe5">修改用户信息</h4>
+                                                                    <h4 class="modal-title" id="exampleModalLabe5">修改食材信息</h4>
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="form-group">
@@ -374,7 +374,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <!--{%endfor %}-->
+                                        {%endfor %}
                                     </table>
                                 </div>
                             </section>

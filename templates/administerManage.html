@@ -86,7 +86,7 @@
                                                     <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i></button>
                                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                                                         <div class="modal-dialog" role="document">
-                                                            <form name="form"  method="post" action="/add_customer">
+                                                            <form name="form"  method="post" action="/add_user">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -190,8 +190,6 @@
                                             <th>菜品名</th>
                                             <th>能量</th>
                                             <th>总价格</th>
-                                            <th>体重</th>
-                                            <th>年龄</th>
                                             <th>功能</th>
                                         </tr>
                                         <!--{% for cus in session.material_all %}-->
@@ -199,42 +197,25 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td></td>
-                                            <td></td>
                                             <td>
                                                 <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal2"><i class="fa fa-plus"></i></button>
                                                 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                                                     <div class="modal-dialog" role="document">
-                                                        <form name="form"  method="post" action="/add_customer">
+                                                        <form name="form"  method="post" action="/add_dish">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                    <h4 class="modal-title" id="exampleModalLabe2">增加用户信息</h4>
+                                                                    <h4 class="modal-title" id="exampleModalLabe2">增加菜品信息</h4>
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" name="add_customer_name" placeholder="姓名 :" required>
+                                                                        <input type="text" class="form-control" name="add_dish_name" placeholder="菜品名 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_customer_password" placeholder="密码 :" required>
+                                                                        <input type="text" class="form-control"  name="add_dish_energy" placeholder="总能量 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" name="add_customer_email" placeholder="邮箱 :" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_customer_height" placeholder="身高 :" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_customer_weight" placeholder="体重:" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_customer_age" placeholder="年龄 :" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_customer_loving" placeholder="口味偏好 :" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_customer_dislike" placeholder="过敏食物 :" required>
+                                                                        <input type="text" class="form-control" name="add_dish_price" placeholder="价格 :" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
@@ -245,40 +226,25 @@
                                                         </form>
                                                     </div>
                                                 </div>
-                                                <a href="/delete_customer/customer_id="><button class="btn btn-warning"><i class="fa fa-trash"></i></button></a>
+                                                <a href="/delete_dish/customer_id="><button class="btn btn-warning"><i class="fa fa-trash"></i></button></a>
                                                 <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal3"><i class="fa fa-pencil"></i></button>
                                                 <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                                                     <div class="modal-dialog" role="document">
-                                                        <form name="form"  method="post" action="/change_customer/customer_id=">
+                                                        <form name="form"  method="post" action="/change_dish/customer_id=">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                    <h4 class="modal-title" id="exampleModalLabe3">修改用户信息</h4>
+                                                                    <h4 class="modal-title" id="exampleModalLabe3">修改菜品信息</h4>
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_customer_name" placeholder="姓名 :" value="" required>
+                                                                        <input type="text" class="form-control"  name="change_dish_name" placeholder="菜品名 :" value="" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_customer_password" placeholder="密码 :" value="" required>
+                                                                        <input type="text" class="form-control"  name="change_dish_energy" placeholder="总能量 :" value="" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_customer_email" placeholder="邮箱 :" value="" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_customer_height" placeholder="身高" value="" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control" name="change_customer_weight" placeholder="体重:" value="" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_customer_age" placeholder="年龄:" value="" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_customer_loving" placeholder="口味偏好 :" value="" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_customer_dislike" placeholder="过敏食物 :" value="" required>
+                                                                        <input type="text" class="form-control"  name="change_dish_price" placeholder="价格 :" value="" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
@@ -307,15 +273,17 @@
                                     <table class="table table-bordered table-hover">
                                         <tr class="bg-info">
                                             <th>食材名字</th>
-                                            <th>营养素</th>
+                                            <th>水分</th>
                                             <th>能量</th>
+                                            <th>蛋白质</th>
+                                            <th>脂肪</th>
+                                            <th>糖类</th>
                                             <th>价格</th>
-                                            <th>体重</th>
-                                            <th>年龄</th>
                                             <th>功能</th>
                                         </tr>
                                         <!--{% for cus in session.material_all %}-->
                                         <tr>
+                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -330,32 +298,29 @@
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                    <h4 class="modal-title" id="exampleModalLabe4">增加用户信息</h4>
+                                                                    <h4 class="modal-title" id="exampleModalLabe4">增加食材信息</h4>
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" name="add_customer_name" placeholder="姓名 :" required>
+                                                                        <input type="text" class="form-control" name="add_ingredients_name" placeholder="食材名 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_customer_password" placeholder="密码 :" required>
+                                                                        <input type="text" class="form-control"  name="add_ingredients_water" placeholder="水分 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" name="add_customer_email" placeholder="邮箱 :" required>
+                                                                        <input type="text" class="form-control" name="add_ingredients_energy" placeholder="能量 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_customer_height" placeholder="身高 :" required>
+                                                                        <input type="text" class="form-control"  name="add_ingredients_ protein" placeholder="蛋白质 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_customer_weight" placeholder="体重:" required>
+                                                                        <input type="text" class="form-control"  name="add_ingredients_fat" placeholder="脂肪:" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_customer_age" placeholder="年龄 :" required>
+                                                                        <input type="text" class="form-control"  name="add_ingredients_saccharides" placeholder="糖类 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_customer_loving" placeholder="口味偏好 :" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_customer_dislike" placeholder="过敏食物 :" required>
+                                                                        <input type="text" class="form-control"  name="add_ingredients_price" placeholder="价格 :" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
@@ -378,28 +343,25 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_customer_name" placeholder="姓名 :" value="" required>
+                                                                        <input type="text" class="form-control" name="change_ingredients_name" placeholder="食材名 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_customer_password" placeholder="密码 :" value="" required>
+                                                                        <input type="text" class="form-control"  name="change_ingredients_water" placeholder="水分 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_customer_email" placeholder="邮箱 :" value="" required>
+                                                                        <input type="text" class="form-control" name="change_ingredients_energy" placeholder="能量 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_customer_height" placeholder="身高" value="" required>
+                                                                        <input type="text" class="form-control"  name="change_ingredients_ protein" placeholder="蛋白质 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" name="change_customer_weight" placeholder="体重:" value="" required>
+                                                                        <input type="text" class="form-control"  name="change_ingredients_fat" placeholder="脂肪:" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_customer_age" placeholder="年龄:" value="" required>
+                                                                        <input type="text" class="form-control"  name="change_ingredients_saccharides" placeholder="糖类 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_customer_loving" placeholder="口味偏好 :" value="" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_customer_dislike" placeholder="过敏食物 :" value="" required>
+                                                                        <input type="text" class="form-control"  name="change_ingredients_price" placeholder="价格 :" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">

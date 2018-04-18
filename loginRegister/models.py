@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import admin
 
 class UserInfo(models.Model):
     # 用户名
@@ -18,5 +19,19 @@ class UserInfo(models.Model):
     # 偏好
     perfer = models.CharField(default='',max_length=225)
 
+    def setBatchAttr(self,username,password,gender,height,weight,age,senstive,perfer):
+        self.username = username
+        self.password = password
+        self.gender = gender
+        self.height = height
+        self.weight = weight
+        self.age = age
+        self.senstive = senstive
+        self.perfer = perfer
+
     def __str__(self):
         return 'username:'+self.username+',password:'+self.password
+
+class UserInfoAdmin(admin.ModelAdmin):
+    list_display = ['id', 'username', 'password','gender','height','weight'
+                    ,'senstive','perfer']

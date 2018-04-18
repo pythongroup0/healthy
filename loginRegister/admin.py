@@ -1,3 +1,4 @@
 from django.contrib import admin
+from loginRegister.models import UserInfo,UserInfoAdmin
 
-# Register your models here.
+admin.site.register(UserInfo, UserInfoAdmin)

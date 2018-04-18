@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- /.website title -->
+<title>登录</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" charset=utf-8>
+{% load staticfiles %}
+<!-- CSS Files -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+<link href="{% static 'fonts/icon-7-stroke/css/pe-icon-7-stroke.css' %}" rel="stylesheet">
+<link href="{% static 'css/animate.css' %}" rel="stylesheet" media="screen">
+<link href="{% static 'css/owl.theme.css' %}" rel="stylesheet">
+<link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet">
+
+<!-- Colors -->
+<link href="{% static 'css/css-index.css' %}" rel="stylesheet" media="screen">
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic" />
+
+</head>
+  
+<body data-spy="scroll" data-target="#navbar-scroll">
+
+<!-- /.preloader -->
+<div id="preloader"></div>
+<div id="top"></div>
+
+<!-- /.parallax full screen background image -->
+<div class="fullscreen landing parallax" style="background-image:url({% static 'img/neaty-01.jpg' %});" data-img-width="2000" data-img-height="1333" data-diff="100">
+	
+	<div class="overlay">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7">
+				
+					<!-- /.logo -->
+					<div class="logo wow fadeInDown"> <a href=""><img src="{% static 'img/logo.png' %}" alt="logo"></a></div>
+
+					<!-- /.main title -->
+						<h1 class="wow fadeInLeft">
+						健康饮食
+						</h1>
+
+					<!-- /.header paragraph -->
+					<div class="landing-text wow fadeInUp">
+						<p>从内蒙的带肉羊骨，到广州的猪肚包鸡</p>
+						<p>人未动，舌尖却翻山越岭</p>
+						<p>虽还是买不起房子</p>
+						<p>但可以先款待了自己的胃</p>
+					</div>
+
+
+					<!-- /.header button -->
+                    <!--
+					<div class="head-btn wow fadeInLeft">
+						<a href="#feature" class="btn-primary">Features</a>
+						<a href="#download" class="btn-default">Download</a>
+					</div>
+                    -->
+				</div> 
+				
+				<!-- /.signup form -->
+				<div class="col-md-5">
+				
+					<div class="signup-header wow fadeInUp">
+						<h3 class="form-title text-center">开启健康饮食之旅</h3>
+						<form class="form-header" action="/userlogin" role="form" method="POST" id="#">
+							{% csrf_token %}
+							<input type="hidden" name="u" value="503bdae81fde8612ff4944435">
+						<input type="hidden" name="id" value="bfdba52708">
+							<div class="form-group">
+								<input class="form-control input-lg" name="username" value='{{ form.username }}' id="username" type="text" placeholder="用户名" required>
+							</div>
+							<div class="form-group">
+								<input class="form-control input-lg" name="password" value="{{ form.password }}" id="password" type="password" placeholder="密码" required>
+							</div>
+							<div class="form-group last">
+								<input type="submit" class="btn btn-warning btn-block btn-lg" value="登录">
+							</div>
+							<p class="register text-center" style="color:red">{{error_msg}}</p>
+							<p class="register text-center"><a href="/register">没有账号？点击这里进行注册</a></p>
+
+						</form>
+					</div>				
+				
+				</div>
+			</div>
+		</div> 
+	</div> 
+</div>
+
+<!-- /.footer -->
+<footer id="footer">
+	<div class="container">
+		<div class="col-sm-4 col-sm-offset-4">
+			<!-- /.social links -->
+				<div class="social text-center">
+					<ul>
+						<li><a class="wow fadeInUp" href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+						<li><a class="wow fadeInUp" href="https://www.facebook.com/" data-wow-delay="0.2s"><i class="fa fa-facebook"></i></a></li>
+						<li><a class="wow fadeInUp" href="https://plus.google.com/" data-wow-delay="0.4s"><i class="fa fa-google-plus"></i></a></li>
+						<li><a class="wow fadeInUp" href="https://instagram.com/" data-wow-delay="0.6s"><i class="fa fa-instagram"></i></a></li>
+					</ul>
+				</div>
+            <div class="adminLogin text-center wow fadeInUp" style="font-size: 14px;"><a href="/adminlogin">管理员登录</a>
+			<div class="text-center wow fadeInUp" style="font-size: 14px;">制作者：位欢欢 王帆 徐逸舟 方韬 丁关雄</a>
+			<a href="#" class="scrollToTop"><i class="pe-7s-up-arrow pe-va"></i></a>
+		</div>	
+	</div>	
+</footer>
+	
+	<!-- /.javascript files -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/jquery.sticky.js' %}"></script>
+	<script src="{% static 'js/wow.min.js' %}"></script>
+	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+	<script>
+		new WOW().init();
+	</script>
+  </body>
+</html>

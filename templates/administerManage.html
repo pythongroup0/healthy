@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Neaty HTML Web Template</title>
+    <!-- load stylesheets -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  <!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">                                      <!-- Bootstrap style -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">                                <!-- Magnific pop up style, http://dimsemenov.com/plugins/magnific-popup/ -->
+    <link rel="stylesheet" href="{% static 'css/templatemo-style.css' %}">                                   <!-- Templatemo style -->
+    <!--<script src="js/adminManage.js"></script>-->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+          <![endif]-->
+</head>
+    <body>        
+        <div class="container">
+            <div class="row">
+                <div class="tm-left-right-container">
+                    <!-- Left column: logo and menu -->
+                    <div class="tm-blue-bg tm-left-column">                        
+                        <div class="tm-logo-div text-xs-center">
+                            <img src="{% static 'img/tm-neaty-logo.png' %}" alt="Logo">
+                            <h1 class="tm-site-name">Ruthy</h1> <a href="#">注销</a>
+                        </div>
+                        <nav class="tm-main-nav">
+                            <ul class="tm-main-nav-ul">
+                                <li class="tm-nav-item">
+                                    <a href="#userManage" class="tm-nav-item-link">用户管理</a>
+                                </li>
+                                <li class="tm-nav-item">
+                                    <a href="#mealManage" class="tm-nav-item-link">菜品管理</a>
+                                </li>
+                                <li class="tm-nav-item">
+                                    <a href="#materialManage" class="tm-nav-item-link">食材管理</a>
+                                </li>
+                                <li class="tm-nav-item">
+                                    <a href="#contact" class="tm-nav-item-link">联系我们</a>
+                                </li>
+                            </ul>
+                        </nav>                                         
+                    </div> <!-- Left column: logo and menu -->
+                    <!--<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>-->
+                    
+                    <!-- Right column: content -->
+                    <div class="tm-right-column">
+                        <div class="tm-content-div">
+                            <!--首页-->
+                            <section class="tm-section"> <img src="{% static 'img/neaty-01.jpg' %}" alt="Header image" class="img-fluid">  </section>
+                            <!-- 用户管理 -->
+                            <section id="userManage" class="tm-section1">
+                                <img src="{% static 'img/neaty-01.jpg' %}" alt="Header image">
+                                <h2 class="tm-blue-text tm-section-title tm-margin-b-30">用户管理</h2>
+                                <div class="research">
+                                    <input type="text" class="research-text" placeholder="输入用户名:"><input type="button" class="rm_button " value="搜索">
+                                </div>
+                                <div class="tm-gallery-container tm-gallery-1">
+                                        <table class="table table-bordered table-hover">
+                                            <tr class="bg-info">
+                                                <th>用户名</th>
+                                                <th>邮箱</th>
+                                                <th>身高(cm)</th>
+                                                <th>体重(kg)</th>
+                                                <th>年龄</th>
+                                                <th>口味偏好</th>
+                                                <th>过敏食物</th>
+                                                <th>功能</th>
+                                            </tr>
+                                            <!--{% for cus in session.customer_all %}-->
+                                                <tr>
+                                                <td>ruthy</td>
+                                                <td>ruthy@163.com</td>
+                                                <td>166</td>
+                                                <td>47</td>
+                                                <td>24</td>
+                                                <td>肉</td>
+                                                <td>酸性食物</td>
+                                                <td>
+                                                    <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i></button>
+                                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                                        <div class="modal-dialog" role="document">
+                                                            <form name="form"  method="post" action="/add_customer">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                        <h4 class="modal-title" id="exampleModalLabe">增加用户信息</h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" name="add_customer_name" placeholder="姓名 :" required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control"  name="add_customer_password" placeholder="密码 :" required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" name="add_customer_email" placeholder="邮箱 :" required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control"  name="add_customer_height" placeholder="身高 :" required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control"  name="add_customer_weight" placeholder="体重:" required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control"  name="add_customer_age" placeholder="年龄 :" required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control"  name="add_customer_loving" placeholder="口味偏好 :" required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control"  name="add_customer_dislike" placeholder="过敏食物 :" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                                        <button type="submit" class="btn btn-primary">确认添加</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <a href="/delete_customer/customer_id="><button class="btn btn-warning"><i class="fa fa-trash"></i></button></a>
+                                                    <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal1"><i class="fa fa-pencil"></i></button>
+                                                    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                                        <div class="modal-dialog" role="document">
+                                                            <form name="form"  method="post" action="/change_customer/customer_id=">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                        <h4 class="modal-title" id="exampleModalLabel">修改用户信息</h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control"  name="change_customer_name" placeholder="姓名 :" value="" required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control"  name="change_customer_password" placeholder="密码 :" value="" required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control"  name="change_customer_email" placeholder="邮箱 :" value="" required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control"  name="change_customer_height" placeholder="身高" value="" required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" name="change_customer_weight" placeholder="体重:" value="" required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control"  name="change_customer_age" placeholder="年龄:" value="" required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control"  name="change_customer_loving" placeholder="口味偏好 :" value="" required>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control"  name="change_customer_dislike" placeholder="过敏食物 :" value="" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                                        <button type="submit" class="btn btn-primary">确认修改</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <!--{%endfor %}-->
+                                        </table>
+                                </div>
+                            </section>
+
+                            <!-- 菜品管理 -->
+                            <section id="mealManage" class="tm-section1">
+                                <img src="{% static 'img/neaty-01.jpg' %}" alt="Header image">
+                                <header><h2 class="tm-blue-text tm-section-title tm-margin-b-30">菜品管理</h2></header>
+                                <div class="research">
+                                    <input type="text" class="research-text" placeholder="输入菜品名:"><input type="button" class="rm_button " value="搜索">
+                                </div>
+                                <div class="tm-gallery-container tm-gallery-2">
+                                    <table class="table table-bordered table-hover">
+                                        <tr class="bg-info">
+                                            <th>菜品名</th>
+                                            <th>能量</th>
+                                            <th>总价格</th>
+                                            <th>体重</th>
+                                            <th>年龄</th>
+                                            <th>功能</th>
+                                        </tr>
+                                        <!--{% for cus in session.material_all %}-->
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal2"><i class="fa fa-plus"></i></button>
+                                                <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                                    <div class="modal-dialog" role="document">
+                                                        <form name="form"  method="post" action="/add_customer">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="exampleModalLabe2">增加用户信息</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="add_customer_name" placeholder="姓名 :" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="add_customer_password" placeholder="密码 :" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="add_customer_email" placeholder="邮箱 :" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="add_customer_height" placeholder="身高 :" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="add_customer_weight" placeholder="体重:" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="add_customer_age" placeholder="年龄 :" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="add_customer_loving" placeholder="口味偏好 :" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="add_customer_dislike" placeholder="过敏食物 :" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                                    <button type="submit" class="btn btn-primary">确认添加</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <a href="/delete_customer/customer_id="><button class="btn btn-warning"><i class="fa fa-trash"></i></button></a>
+                                                <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal3"><i class="fa fa-pencil"></i></button>
+                                                <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                                    <div class="modal-dialog" role="document">
+                                                        <form name="form"  method="post" action="/change_customer/customer_id=">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="exampleModalLabe3">修改用户信息</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="change_customer_name" placeholder="姓名 :" value="" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="change_customer_password" placeholder="密码 :" value="" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="change_customer_email" placeholder="邮箱 :" value="" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="change_customer_height" placeholder="身高" value="" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="change_customer_weight" placeholder="体重:" value="" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="change_customer_age" placeholder="年龄:" value="" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="change_customer_loving" placeholder="口味偏好 :" value="" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="change_customer_dislike" placeholder="过敏食物 :" value="" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                                    <button type="submit" class="btn btn-primary">确认修改</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <!--{%endfor %}-->
+                                    </table>
+                                </div>
+                            </section>
+
+                            <!-- 食材管理 -->
+                            <section id="materialManage" class="tm-section1">
+                                <img src="{% static 'img/neaty-01.jpg' %}" alt="Header image">
+                                <header><h2 class="tm-blue-text tm-section-title tm-margin-b-30">食材管理</h2></header>
+                                <div class="research">
+                                    <input type="text" class="research-text" placeholder="输入食材名:"><input type="button" class="rm_button " value="搜索">
+                                </div>
+                                <div class="tm-gallery-container tm-gallery-1">
+                                    <table class="table table-bordered table-hover">
+                                        <tr class="bg-info">
+                                            <th>食材名字</th>
+                                            <th>营养素</th>
+                                            <th>能量</th>
+                                            <th>价格</th>
+                                            <th>体重</th>
+                                            <th>年龄</th>
+                                            <th>功能</th>
+                                        </tr>
+                                        <!--{% for cus in session.material_all %}-->
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal4"><i class="fa fa-plus"></i></button>
+                                                <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                                    <div class="modal-dialog" role="document">
+                                                        <form name="form"  method="post" action="/add_customer">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="exampleModalLabe4">增加用户信息</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="add_customer_name" placeholder="姓名 :" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="add_customer_password" placeholder="密码 :" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="add_customer_email" placeholder="邮箱 :" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="add_customer_height" placeholder="身高 :" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="add_customer_weight" placeholder="体重:" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="add_customer_age" placeholder="年龄 :" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="add_customer_loving" placeholder="口味偏好 :" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="add_customer_dislike" placeholder="过敏食物 :" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                                    <button type="submit" class="btn btn-primary">确认添加</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <a href="/delete_customer/customer_id="><button class="btn btn-warning"><i class="fa fa-trash"></i></button></a>
+                                                <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal5"><i class="fa fa-pencil"></i></button>
+                                                <div class="modal fade" id="exampleModal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                                    <div class="modal-dialog" role="document">
+                                                        <form name="form"  method="post" action="/change_customer/customer_id=">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="exampleModalLabe5">修改用户信息</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="change_customer_name" placeholder="姓名 :" value="" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="change_customer_password" placeholder="密码 :" value="" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="change_customer_email" placeholder="邮箱 :" value="" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="change_customer_height" placeholder="身高" value="" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="change_customer_weight" placeholder="体重:" value="" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="change_customer_age" placeholder="年龄:" value="" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="change_customer_loving" placeholder="口味偏好 :" value="" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"  name="change_customer_dislike" placeholder="过敏食物 :" value="" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                                    <button type="submit" class="btn btn-primary">确认修改</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <!--{%endfor %}-->
+                                    </table>
+                                </div>
+                            </section>
+
+                            <!--联系我们-->
+                            <section id="contact" class="tm-section1">
+                                <img src="{% static 'img/neaty-01.jpg' %}" alt="Header image">
+                                <header><h2 class="tm-blue-text tm-section-title tm-margin-b-30">联系我们</h2></header>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <form action="#contact" method="post" class="contact-form">
+                                            <div class="form-group">
+                                                <input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="姓名"  required/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="email" id="contact_email" name="contact_email" class="form-control" placeholder="邮箱"  required/>
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea id="contact_message" name="contact_message" class="form-control" rows="9" placeholder="内容" required></textarea>
+                                            </div>                                            
+                                            <button type="submit" class="float-right tm-button">发送</button>
+                                        </form>    
+                                    </div>
+                                    
+                                    <div class="col-lg-6 tm-contact-right">
+                                        <p>
+                                            健康饮食系统旨在为您推荐最适合您的饮食菜谱，合理化，专业化是我们的服务宗旨，您有什么意见和建议请联系我们！
+                                        </p>
+                                        <address>
+                                            上海师范大学<br>
+                                            信息与机电工程学院<br>
+                                            python小分队
+                                        </address>
+                                    </div>
+                                </div>
+                                
+                            </section>
+
+                        </div>
+                    </div> <!-- Right column: content -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+                
+        <!-- load JS files -->
+    <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <script src="{% static 'js/jquery-1.12.0.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <!--左右侧显示的script代码-->
+    <script type="text/javascript">
+        $( $(".tm-right-column section")[0] ).show().siblings().hide();
+        $(".tm-nav-item a").on('click',function(){
+            if( this.innerHTML=="用户管理" ){
+                $( $(".tm-right-column section")[1] ).show().siblings().hide();
+            }else if( this.innerHTML=="菜品管理" ){
+                $( $(".tm-right-column section")[2] ).show().siblings().hide();
+            }else if( this.innerHTML=="食材管理" ){
+                $( $(".tm-right-column section")[3] ).show().siblings().hide();
+            }else{
+                $( $(".tm-right-column section")[4] ).show().siblings().hide();
+            }
+        })
+    </script>
+    <!--按钮添加功能的script代码-->
+    <script>
+        $('#exampleModal').on('show.bs.modal', function (event) {
+
+        })
+    </script>
+    </body>
+</html>

@@ -68,37 +68,37 @@
 				
 					<div class="signup-header wow fadeInUp">
 						<h3 class="form-title text-center">注册个人信息</h3>
-						<form class="form-header" action="http://moxdesign.us10.list-manage.com/subscribe/post" role="form" method="POST" id="#">
+						<form class="form-header" action="register" role="form" method="POST" id="#">
 						<input type="hidden" name="u" value="503bdae81fde8612ff4944435">
 						<input type="hidden" name="id" value="bfdba52708">
 							<div class="form-group">
-								<input class="form-control input-lg" name="username" id="username" type="text" placeholder="用户名（必填）" required>
+								<input class="form-control input-lg" name="username" id="username" type="text" value="{{form.username}}" placeholder="用户名（必填）" required>
 							</div>
 							<div class="form-group">
-								<input class="form-control input-lg" name="password" id="password" type="password" placeholder="密码（必填）" required>
+								<input class="form-control input-lg" name="password" id="password" type="password" value="{{form.password}}" placeholder="密码（必填）" required>
 							</div>
 							<div class="form-group" style="color:#000000" style="font-size:28px">
-                                性别：&nbsp;&nbsp;&nbsp;&nbsp;<input name="sex" type="radio" checked="checked"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="sex" type="radio" />女
+                                性别：&nbsp;&nbsp;&nbsp;&nbsp;<input name="sex" type="radio" value="True" checked="checked"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="sex" value="False" type="radio" />女
 							</div>
 							<div class="form-group">
-								<input class="form-control input-lg" name="height" id="height" type="text" placeholder="身高" required>
+								<input class="form-control input-lg" name="height" id="height" type="text" value="{{form.height}}" placeholder="身高" required>
 							</div>
                             <div class="form-group">
-								<input class="form-control input-lg" name="weight" id="weight" type="text" placeholder="体重" required>
+								<input class="form-control input-lg" name="weight" id="weight" type="text" value="{{form.weight}}" placeholder="体重" required>
 							</div>
                             <div class="form-group">
-								<input class="form-control input-lg" name="age" id="age" type="text" placeholder="年龄" required>
+								<input class="form-control input-lg" name="age" id="age" type="text" value="{{form.age}}" placeholder="年龄" required>
 							</div>
                             <div class="form-group">
-								<input class="form-control input-lg" name="allergic_food" id="allergic_food" type="text" placeholder="过敏食物" required>
+								<input class="form-control input-lg" name="allergic_food" id="allergic_food" value="{{form.allergic_food}}" type="text" placeholder="过敏食物" required>
 							</div>
                             <div class="form-group">
-								<input class="form-control input-lg" name="taste" id="taste" type="text" placeholder="口味偏好" required>
+								<input class="form-control input-lg" name="taste" id="taste" type="text" value="{{form.taste}}" placeholder="口味偏好" required>
 							</div>
 							<div class="form-group last">
-								<input type="" class="btn btn-warning btn-block btn-lg" value="注册">
+								<input type="submit" class="btn btn-warning btn-block btn-lg" value="注册">
 							</div>
-                            <p></p>
+                            <p class="register text-center" style="color:red">{{error_msg}}</p>
 						</form>
 					</div>				
 				

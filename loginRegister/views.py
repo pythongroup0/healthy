@@ -1,37 +1,10 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
-from django.http import HttpResponseRedirect
 from loginRegister.models import UserInfo
 from manages import views
+from .apps import UserRegisterForm,UserLoginForm
 
-class UserLoginForm():
-    def __init__(self,username='',password=''):
-        self.username = username
-        self.password = password
-    def setPost(self,post):
-        self.username = post['username']
-        self.password = post['password']
-
-class UserRegisterForm():
-    username = ''
-    password = ''
-    sex = True
-    height = 0
-    weight = 0
-    age = 0
-    allergic_food = ''
-    taste = ''
-
-    def setPost(self,post):
-        self.username = post['username']
-        self.password = post['password']
-        self.sex = bool(post['sex'])
-        self.height = float(post['height'])
-        self.weight = float(post['weight'])
-        self.age = float(post['age'])
-        self.allergic_food = post['allergic_food']
-        self.taste = post['taste']
-
+def index(request):
+    return render(request,'userLogin.html')
 
 def userLogin(request):
     # 返回的错误信息

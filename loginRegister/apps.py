@@ -3,12 +3,21 @@ from django.apps import AppConfig
 
 class LoginregisterConfig(AppConfig):
     name = 'loginRegister'
+
 class UserLoginForm():
     def __init__(self,username='',password=''):
         self.username = username
         self.password = password
     def setPost(self,post):
         self.username = post['username']
+        self.password = post['password']
+
+class AdminLoginForm():
+    def __init__(self,adminname='',password=''):
+        self.adminname = adminname
+        self.password = password
+    def setPost(self,post):
+        self.adminname = post['adminname']
         self.password = post['password']
 
 class UserRegisterForm():

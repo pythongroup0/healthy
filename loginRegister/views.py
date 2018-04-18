@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from loginRegister.models import UserInfo
+from manages.models import AdminInfo
 from manages import views
-from .apps import UserRegisterForm,UserLoginForm
+from .apps import UserRegisterForm,UserLoginForm,AdminLoginForm
 
 def index(request):
     return render(request,'userLogin.html')
@@ -22,8 +23,21 @@ def userLogin(request):
     return render(request,'userLogin.html',{'form':form,'error_msg':error_msg})
 
 def adminLogin(request):
-    context = {}
-    return render(request,'adminLogin.html',context)
+    return render(request,'adminLogin.html')
+
+def adminLogin_check(request):
+    error_msg = ''
+    form=AdminLoginForm()
+    if request.method == 'POST':
+        # 从表单填充数据
+        form.setPost(request.POST)
+        # 查询数据库
+        admin = AdminInfo.objects.filter(adminname=form.adminname,password=form.password)
+        if len(admin)>=1:
+            return redirect(views.administerManage)
+        else:
+            error_msg = '用户名或密码错误'
+    return render(request,'adminLogin.html',{'form':form,'error_msg':error_msg})
 
 def register(request):
     error_msg = ''

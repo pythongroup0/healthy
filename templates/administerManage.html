@@ -28,7 +28,7 @@
                     <div class="tm-blue-bg tm-left-column">                        
                         <div class="tm-logo-div text-xs-center">
                             <img src="{% static 'img/tm-neaty-logo.png' %}" alt="Logo">
-                            <h1 class="tm-site-name">Ruthy</h1> <a href="/userLogin">注销</a>
+                            <h1 class="tm-site-name">{{ request.session.adminer }},欢迎登陆</h1> <a href="/userLogin">注销</a>
                         </div>
                         <nav class="tm-main-nav">
                             <ul class="tm-main-nav-ul">
@@ -73,15 +73,15 @@
                                                 <th>过敏食物</th>
                                                 <th>功能</th>
                                             </tr>
-                                            <!--{% for cus in session.customer_all %}-->
-                                                <tr>
-                                                <td>ruthy</td>
-                                                <td>ruthy@163.com</td>
-                                                <td>166</td>
-                                                <td>47</td>
-                                                <td>24</td>
-                                                <td>肉</td>
-                                                <td>酸性食物</td>
+                                             {% for user in user_list %}
+                                            <tr>
+                                                <td>{{ user.username }}</td>
+                                                <td>{{ user.email }}</td>
+                                                <td>{{ user.height}}</td>
+                                                <td>{{ user.weight }}</td>
+                                                <td>{{ user.age }}</td>
+                                                <td>{{ user.perfer }}</td>
+                                                <td>{{ user.senstive }}</td>
                                                 <td>
                                                     <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i></button>
                                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -126,7 +126,7 @@
                                                             </form>
                                                         </div>
                                                     </div>
-                                                    <a href="/delete_customer/customer_id="><button class="btn btn-warning"><i class="fa fa-trash"></i></button></a>
+                                                    <a href="/adminDeleteUser/{{ user.id }}"><button class="btn btn-warning"><i class="fa fa-trash"></i></button></a>
                                                     <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal1"><i class="fa fa-pencil"></i></button>
                                                     <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                                                         <div class="modal-dialog" role="document">
@@ -172,7 +172,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <!--{%endfor %}-->
+                                            {%endfor %}
                                         </table>
                                 </div>
                             </section>

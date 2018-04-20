@@ -23,6 +23,7 @@ class AdminLoginForm():
 class UserRegisterForm():
     username = ''
     password = ''
+    email=''
     sex = True
     height = 0
     weight = 0
@@ -33,6 +34,7 @@ class UserRegisterForm():
     def setPost(self,post):
         self.username = post['username']
         self.password = post['password']
+        self.email = post['email']
         self.sex = bool(post['sex'])
         self.height = float(post['height'])
         self.weight = float(post['weight'])

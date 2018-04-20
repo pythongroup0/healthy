@@ -3,6 +3,7 @@ from manages.views import *
 
 urlpatterns = [
     url('^administermanage$',administerManage),
+    url('^adminDeleteUser/(\d+)$',adminDeleteUser),
     url('^usermanage$',userManage),
     url('^display$',display),
 ]

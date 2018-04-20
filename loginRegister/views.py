@@ -24,6 +24,7 @@ def userLogin(request):
 
 def adminLogin(request):
     error_msg = ''
+    adminer=''
     form=AdminLoginForm()
     if request.method == 'POST':
         # 从表单填充数据
@@ -31,6 +32,7 @@ def adminLogin(request):
         # 查询数据库
         admin = AdminInfo.objects.filter(adminname=form.adminname,password=form.password)
         if len(admin)>=1:
+            request.session['adminer']=form.adminname
             return redirect(views.administerManage)
         else:
             error_msg = '用户名或密码错误'
@@ -50,7 +52,7 @@ def register(request):
                 error_msg = '用户名已存在'
             else:
                 user = UserInfo()
-                user.setBatchAttr(form.username,form.password,form.sex,form.height,form.weight
+                user.setBatchAttr(form.username,form.password,form.email,form.sex,form.height,form.weight
                               ,form.age,form.allergic_food,form.taste)
                 user.save()
                 return redirect(userLogin)

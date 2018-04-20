@@ -68,7 +68,7 @@
 				
 					<div class="signup-header wow fadeInUp">
 						<h3 class="form-title text-center">注册个人信息</h3>
-						<form class="form-header" action="register" role="form" method="POST" id="#">
+						<form class="form-header" action="/register" role="form" method="POST" id="#">
 						<input type="hidden" name="u" value="503bdae81fde8612ff4944435">
 						<input type="hidden" name="id" value="bfdba52708">
 							<div class="form-group">
@@ -76,6 +76,9 @@
 							</div>
 							<div class="form-group">
 								<input class="form-control input-lg" name="password" id="password" type="password" value="{{form.password}}" placeholder="密码（必填）" required>
+							</div>
+                            <div class="form-group">
+								<input class="form-control input-lg" name="email" id="email" type="text" value="{{form.email}}" placeholder="邮箱（必填）" required>
 							</div>
 							<div class="form-group" style="color:#000000" style="font-size:28px">
                                 性别：&nbsp;&nbsp;&nbsp;&nbsp;<input name="sex" type="radio" value="True" checked="checked"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="sex" value="False" type="radio" />女
@@ -121,7 +124,7 @@
 						<li><a class="wow fadeInUp" href="https://instagram.com/" data-wow-delay="0.6s"><i class="fa fa-instagram"></i></a></li>
 					</ul>
 				</div>
-            <div class="adminLogin text-center wow fadeInUp" style="font-size: 14px;"><a href="adminLogin.html">管理员登录</a>
+            <div class="adminLogin text-center wow fadeInUp" style="font-size: 14px;"><a href="/adminLogin">管理员登录</a>
 			<div class="text-center wow fadeInUp" style="font-size: 14px;">制作者：位欢欢 王帆 徐逸舟 方韬 丁关雄</a>
 			<a href="#" class="scrollToTop"><i class="pe-7s-up-arrow pe-va"></i></a>
 		</div>	

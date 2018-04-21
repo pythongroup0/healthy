@@ -6,6 +6,7 @@ urlpatterns = [
     url('^adminDeleteUser/(\d+)$',adminDeleteUser),
     url('^adminAddUser$',adminAddUser),
     url('^adminChangeUser/(\d+)$',adminChangeUser),
+    url('^adminSearchUser$',adminSearchUser),
     url('^usermanage$',userManage),
     url('^display$',display),
 ]

@@ -4,7 +4,6 @@ from loginRegister.apps import UserRegisterForm
 
 def administerManage(request):
     user_list=UserInfo.objects.all()
-    print(user_list)
     return render(request,'administerManage.html',{'user_list':user_list})
 
 def adminDeleteUser(request,id):
@@ -48,10 +47,29 @@ def adminChangeUser(request,id):
                                                       senstive=form.allergic_food,perfer=form.taste)
         return redirect(administerManage)
     return render(request, 'administerManage.html', {'error_msg': error_msg})
+
+def adminSearchUser(request):
+    error_msg = ''
+    if request.method == 'POST':
+        researchUser = request.POST['searchUser']
+        print(researchUser)
+        if researchUser=="":
+            error_msg='请输入用户名搜索'
+            user_list =UserInfo.objects.all()
+            return render(request, 'administerManage.html', {'user_list': user_list,'error_msg':error_msg})
+        else:
+            username = UserInfo.objects.filter(username__contains=researchUser)
+            print(username)
+            if len(username)>=1:
+                user_list=UserInfo.objects.filter(username__contains=researchUser)
+                print(user_list)
+                return render(request, 'administerManage.html', {'user_list': user_list})
+            else:
+                error_msg='不存在该用户'
+    return render(request, 'administerManage.html', {'error_msg': error_msg})
 def display(request):
     context = {}
     return render(request, 'display.html', context)
-
 def userManage(request):
     context = {}
     return render(request, 'userManage.html', context)

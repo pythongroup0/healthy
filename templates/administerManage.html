@@ -59,7 +59,9 @@
                                 <img src="{% static 'img/neaty-01.jpg' %}" alt="Header image">
                                 <h2 class="tm-blue-text tm-section-title tm-margin-b-30">用户管理</h2>
                                 <div class="research">
-                                    <input type="text" class="research-text" placeholder="输入用户名:"><input type="button" class="rm_button " value="搜索">
+                                    <form name="form"  method="post" action="/adminSearchUser">
+                                    <input type="text" class="research-text" name="searchUser"placeholder="输入用户名:"><input type="submit" class="rm_button " value="搜索">{{ error_msg }}
+                                    </form>
                                 </div>
                                 <div class="tm-gallery-container tm-gallery-1">
                                         <table class="table table-bordered table-hover">

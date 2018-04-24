@@ -10,6 +10,7 @@ def administerManage(request):
     ingredients_list = IngredientsInfo.objects.all()
     return render(request,'administerManage.html',{'user_list':user_list,'dish_list':dish_list,'ingredients_list':ingredients_list})
 
+
 #管理员管理用户增删改查
 def adminAddUser(request):
     error_msg = ''

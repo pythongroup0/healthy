@@ -12,6 +12,7 @@ urlpatterns = [
     url('^usermanage$',userManage),
     url('^I_changeUser/(\d+)', I_changeUser),
     url('^display$',display),
+
     #管理员对于菜品的增删改查
     url('^adminAddDish$',adminAddDish),
     url('^adminDeleteDish/(\d+)$',adminDeleteDish),

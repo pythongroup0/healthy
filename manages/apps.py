@@ -14,6 +14,7 @@ class addDishForm():
         self.dishEnergy = float(post['dishEnergy'])
         self.dishPrice = float(post['dishPrice'])
 
+
 class IngredientsForm():
     ingredientsName = ''
     water = 0.0

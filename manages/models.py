@@ -30,6 +30,7 @@ class DishInfo(models.Model):
 class DishInfoAdmin(admin.ModelAdmin):
     list_display = ['id', 'dishName', 'dishEnergy', 'dishPrice']
 
+
 class IngredientsInfo(models.Model):
     ingredientsName=models.CharField(max_length=40)
     water=models.FloatField(default=0.0)

@@ -192,7 +192,9 @@
                                 <img src="{% static 'img/neaty-01.jpg' %}" alt="Header image">
                                 <header><h2 class="tm-blue-text tm-section-title tm-margin-b-30">菜品管理</h2></header>
                                 <div class="research">
-                                    <input type="text" class="research-text" placeholder="输入菜品名:"><input type="button" class="rm_button " value="搜索">
+                                    <form name="form"  method="post" action="/adminSearchDish">
+                                    <input type="text" class="research-text" name="searchDish"placeholder="输入菜品名:"><input type="submit" class="rm_button " value="搜索">{{ error_msg }}
+                                    </form>
                                 </div>
                                 <div class="tm-gallery-container tm-gallery-2">
                                     <table class="table table-bordered table-hover">
@@ -202,16 +204,16 @@
                                             <th>总价格</th>
                                             <th>功能</th>
                                         </tr>
-                                        <!--{% for cus in session.material_all %}-->
+                                        {% for dish in dish_list %}
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ dish.dishName }}</td>
+                                            <td>{{ dish.dishEnergy }}</td>
+                                            <td>{{ dish.dishPrice }}</td>
                                             <td>
-                                                <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal2"><i class="fa fa-plus"></i></button>
-                                                <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                                <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal2{{ dish.id }}"><i class="fa fa-plus"></i></button>
+                                                <div class="modal fade" id="exampleModal2{{ dish.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                                                     <div class="modal-dialog" role="document">
-                                                        <form name="form"  method="post" action="/add_dish">
+                                                        <form name="form"  method="post" action="/adminAddDish">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -219,13 +221,13 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" name="add_dish_name" placeholder="菜品名 :" required>
+                                                                        <input type="text" class="form-control" name="dishName" placeholder="菜品名 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_dish_energy" placeholder="总能量 :" required>
+                                                                        <input type="text" class="form-control"  name="dishEnergy" placeholder="总能量 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" name="add_dish_price" placeholder="价格 :" required>
+                                                                        <input type="text" class="form-control" name="dishPrice" placeholder="价格 :" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
@@ -236,11 +238,12 @@
                                                         </form>
                                                     </div>
                                                 </div>
-                                                <a href="/delete_dish/customer_id="><button class="btn btn-warning"><i class="fa fa-trash"></i></button></a>
-                                                <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal3"><i class="fa fa-pencil"></i></button>
-                                                <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                                <a href="/adminDeleteDish/{{ dish.id }}"><button class="btn btn-warning"><i class="fa fa-trash"></i></button></a>
+                                                <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal3{{ dish.id }}"><i class="fa fa-pencil"></i></button>
+                                                <div class="modal fade" id="exampleModal3{{ dish.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+
                                                     <div class="modal-dialog" role="document">
-                                                        <form name="form"  method="post" action="/change_dish/customer_id=">
+                                                        <form name="form"  method="post" action="/adminChangeDish/{{ dish.id }}">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -248,13 +251,13 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_dish_name" placeholder="菜品名 :" value="" required>
+                                                                        <input type="text" class="form-control"  name="dishName" placeholder="菜品名 :" value="{{ dish.dishName}}"required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_dish_energy" placeholder="总能量 :" value="" required>
+                                                                        <input type="text" class="form-control"  name="dishEnergy" placeholder="总能量 :" value="{{ dish.dishEnergy }}" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_dish_price" placeholder="价格 :" value="" required>
+                                                                        <input type="text" class="form-control"  name="dishPrice" placeholder="价格 :" value="{{ dish.dishPrice }}" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
@@ -267,17 +270,19 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <!--{%endfor %}-->
+                                        {%endfor %}
                                     </table>
                                 </div>
                             </section>
 
                             <!-- 食材管理 -->
-                            <section id="materialManage" class="tm-section1">
+                             <section id="materialManage" class="tm-section1">
                                 <img src="{% static 'img/neaty-01.jpg' %}" alt="Header image">
                                 <header><h2 class="tm-blue-text tm-section-title tm-margin-b-30">食材管理</h2></header>
                                 <div class="research">
-                                    <input type="text" class="research-text" placeholder="输入食材名:"><input type="button" class="rm_button " value="搜索">
+                                    <form name="form"  method="post" action="/adminSearchIngredients">
+                                    <input type="text" class="research-text" name="ingredientsName" placeholder="输入食材名:"><input type="submit" class="rm_button " value="搜索">{{ error_msg }}
+                                    </form>
                                 </div>
                                 <div class="tm-gallery-container tm-gallery-1">
                                     <table class="table table-bordered table-hover">
@@ -291,9 +296,9 @@
                                             <th>价格</th>
                                             <th>功能</th>
                                         </tr>
-                                        {% for ing in session.ingredients %}-->
+                                        {% for ing in ingredients_list %}
                                         <tr>
-                                            <td>{{ ing.ingredients_name }}</td>
+                                            <td>{{ ing.ingredientsName }}</td>
                                             <td>{{ ing.water}}</td>
                                             <td>{{ ing.energy}}</td>
                                             <td>{{ ing.protein}}</td>
@@ -301,10 +306,10 @@
                                             <td>{{ ing.saccharides }}</td>
                                             <td>{{ ing.price }}</td>
                                             <td>
-                                                <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal4"><i class="fa fa-plus"></i></button>
-                                                <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                                <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal4{{ ing.id }}"><i class="fa fa-plus"></i></button>
+                                                <div class="modal fade" id="exampleModal4{{ ing.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                                                     <div class="modal-dialog" role="document">
-                                                        <form name="form"  method="post" action="/add_customer">
+                                                        <form  method="post" role="form" action="/adminAddIngredients">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -312,40 +317,41 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" name="add_ingredients_name" placeholder="食材名 :" required>
+                                                                        <input type="text" class="form-control" name="ingredientsName" value="" placeholder="食材名 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_ingredients_water" placeholder="水分 :" required>
+                                                                        <input type="text" class="form-control"  name="water"  placeholder="水分 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" name="add_ingredients_energy" placeholder="能量 :" required>
+                                                                        <input type="text" class="form-control" name="energy" placeholder="能量(整数) :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_ingredients_ protein" placeholder="蛋白质 :" required>
+                                                                        <input type="text" class="form-control"  name="protein" placeholder="蛋白质 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_ingredients_fat" placeholder="脂肪:" required>
+                                                                        <input type="text" class="form-control"  name="fat" placeholder="脂肪:" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_ingredients_saccharides" placeholder="糖类 :" required>
+                                                                        <input type="text" class="form-control"  name="saccharides" placeholder="糖类 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="add_ingredients_price" placeholder="价格 :" required>
+                                                                        <input type="text" class="form-control"  name="price" placeholder="价格 :" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="submit" class="btn btn-default" data-dismiss="modal">关闭</button>
                                                                     <button type="submit" class="btn btn-primary">确认添加</button>
                                                                 </div>
+                                                                 <p class="register text-center" style="color:red">{{error_msg}}</p>
                                                             </div>
                                                         </form>
                                                     </div>
                                                 </div>
-                                                <a href="/delete_customer/customer_id="><button class="btn btn-warning"><i class="fa fa-trash"></i></button></a>
-                                                <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal5"><i class="fa fa-pencil"></i></button>
-                                                <div class="modal fade" id="exampleModal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                                <a href="/adminDeleteIngredients/{{ ing.id }}"><button class="btn btn-warning"><i class="fa fa-trash"></i></button></a>
+                                                <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal5{{ ing.id }}"><i class="fa fa-pencil"></i></button>
+                                                <div class="modal fade" id="exampleModal5{{ ing.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                                                     <div class="modal-dialog" role="document">
-                                                        <form name="form"  method="post" action="/change_customer/customer_id=">
+                                                        <form name="form"  method="post" action="/adminChangeIngredients/{{ ing.id }}">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -353,31 +359,32 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" name="change_ingredients_name" placeholder="食材名 :" required>
+                                                                        <input type="text" class="form-control" name="ingredientsName" value="{{ ing.ingredientsName }}" placeholder="食材名 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_ingredients_water" placeholder="水分 :" required>
+                                                                        <input type="text" class="form-control"  name="water" value="{{ ing.water }}" placeholder="水分 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" name="change_ingredients_energy" placeholder="能量 :" required>
+                                                                        <input type="text" class="form-control" name="energy" value="{{ ing.energy }}" placeholder="能量 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_ingredients_ protein" placeholder="蛋白质 :" required>
+                                                                        <input type="text" class="form-control"  name="protein" value="{{ ing.protein }}" placeholder="蛋白质 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_ingredients_fat" placeholder="脂肪:" required>
+                                                                        <input type="text" class="form-control"  name="fat" value="{{ ing.fat }}" placeholder="脂肪:" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_ingredients_saccharides" placeholder="糖类 :" required>
+                                                                        <input type="text" class="form-control"  name="saccharides" value="{{ ing.saccharides }}" placeholder="糖类 :" required>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control"  name="change_ingredients_price" placeholder="价格 :" required>
+                                                                        <input type="text" class="form-control"  name="price" value="{{ ing.price }}" placeholder="价格 :" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="submit" class="btn btn-default" data-dismiss="modal">关闭</button>
                                                                     <button type="submit" class="btn btn-primary">确认修改</button>
                                                                 </div>
+                                                                <p class="register text-center" style="color:red">{{error_msg}}</p>
                                                             </div>
                                                         </form>
                                                     </div>

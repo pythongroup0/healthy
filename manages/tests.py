@@ -1,6 +1,6 @@
 from django.test import TestCase
-from loginRegister.models import UserInfo
+from manages.models import DishInfo
 
 # Create your tests here.
-user_list=UserInfo.objects.filter(username='ruthy')
-print(user_list)
+dish_list=DishInfo.objects.all()
+print(dish_list)

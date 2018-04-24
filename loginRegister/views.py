@@ -17,6 +17,7 @@ def userLogin(request):
         # 查询数据库
         user = UserInfo.objects.filter(username=form.username,password=form.password)
         if len(user)>=1:
+            request.session['username'] = form.username
             return redirect(views.userManage)
         else:
             error_msg = '用户名或密码错误'
@@ -52,6 +53,7 @@ def register(request):
                 error_msg = '用户名已存在'
             else:
                 user = UserInfo()
+                request.session['username'] = form.username
                 user.setBatchAttr(form.username,form.password,form.email,form.sex,form.height,form.weight
                               ,form.age,form.allergic_food,form.taste)
                 user.save()

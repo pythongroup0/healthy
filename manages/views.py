@@ -149,6 +149,7 @@ def adminSearchIngredients(request):
                 return render(request, 'administerManage.html',
                               {'user_list': user_list, 'error_msg': error_msg})
     return render(request, 'administerManage.html', {'error_msg': error_msg})
+
 def display(request):
     context = {}
     return render(request, 'display.html', context)

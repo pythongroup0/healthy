@@ -66,8 +66,9 @@ def adminSearchUser(request):
             print(username)
             if len(username)>=1:
                 user_list=UserInfo.objects.filter(username__contains=researchUser)
-                print(user_list)
-                return render(request, 'administerManage.html', {'user_list': user_list})
+                dish_list = DishInfo.objects.all()
+                ingredients_list = IngredientsInfo.objects.all()
+                return render(request, 'administerManage.html', {'user_list': user_list,'dish_list':dish_list,'ingredients_list':ingredients_list})
             else:
                 error_msg='不存在该用户'
     return render(request, 'administerManage.html', {'error_msg': error_msg})
@@ -110,7 +111,7 @@ def adminChangeDish(request,id):
             else:
                 DishInfo.objects.filter(id=id).update(dishName=form.dishName,dishEnergy=form.dishEnergy,
                 dishPrice=form.dishPrice)
-        return redirect(administerManage)
+            return redirect(administerManage)
     return render(request, 'administerManage.html', {'error_msg': error_msg})
 def adminSearchDish(request):
     error_msg = ''
@@ -126,7 +127,10 @@ def adminSearchDish(request):
             print(dishName)
             if len(dishName)>=1:
                 dish_list=DishInfo.objects.filter(dishName__contains=researchDish)
-                return render(request, 'administerManage.html', {'dish_list': dish_list})
+                user_list = UserInfo.objects.all()
+                ingredients_list = IngredientsInfo.objects.all()
+                return render(request, 'administerManage.html',
+                              {'user_list': user_list, 'dish_list': dish_list, 'ingredients_list': ingredients_list})
             else:
                 error_msg='不存在该用户'
     return render(request, 'administerManage.html', {'error_msg': error_msg})
@@ -173,7 +177,7 @@ def adminChangeIngredients(request,id):
                 IngredientsInfo.objects.filter(id=id).update(ingredientsName=form.ingredientsName, water=form.water,
                                                       energy=form.energy, protein=form.protein, fat=form.fat,
                                                              saccharides=form.saccharides, price=form.price)
-        return redirect(administerManage)
+                return redirect(administerManage)
     return render(request, 'administerManage.html', {'error_msg': error_msg})
 # 管理员查询食材
 def adminSearchIngredients(request):
@@ -193,8 +197,9 @@ def adminSearchIngredients(request):
             if len(ingredientsName) >= 1:
                 user_list = UserInfo.objects.all()
                 ingredients_list = ingredientsName
+                dish_list=DishInfo.objects.all()
                 return render(request, 'administerManage.html',
-                              {'user_list': user_list, 'ingredients_list': ingredients_list, 'error_msg': error_msg})
+                              {'user_list': user_list, 'ingredients_list': ingredients_list,'dish_list':dish_list})
             else:
                 error_msg = '不存在该食材'
                 user_list = UserInfo.objects.all()

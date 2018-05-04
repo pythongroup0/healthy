@@ -18,17 +18,24 @@ class DishInfo(models.Model):
     dishEnergy = models.FloatField()
     #菜品价格
     dishPrice = models.FloatField()
+    #菜品分类
+    dishClassify=models.CharField(default='meat',max_length=60)
+    #包含食材
+    dishIngredients=models.CharField(default='egg',max_length=120)
 
-    def setBatchAttr(self,dishName,dishEnergy,dishPrice):
+    def setBatchAttr(self,dishName,dishEnergy,dishPrice,dishClassify,dishIngredients):
         self.dishName = dishName
         self.dishEnergy = dishEnergy
         self.dishPrice = dishPrice
+        self.dishClassify=dishClassify
+        self.dishIngredients=dishIngredients
 
     def __str__(self):
-        return 'dishName:'+self.dishName+',dishEnergy:'+str(self.dishEnergy)+',dishPrice:'+str(self.dishPrice)
+        return 'dishName:'+self.dishName+',dishEnergy:'+str(self.dishEnergy)+',dishPrice:'+\
+               str(self.dishPrice)+self.dishClassify+',dishIngredients:'+self.dishIngredients
 
 class DishInfoAdmin(admin.ModelAdmin):
-    list_display = ['id', 'dishName', 'dishEnergy', 'dishPrice']
+    list_display = ['id', 'dishName', 'dishEnergy', 'dishPrice','dishClassify','dishIngredients']
 
 
 class IngredientsInfo(models.Model):
@@ -55,3 +62,19 @@ class IngredientsInfo(models.Model):
 class IngredientsInfoAdmin(admin.ModelAdmin):
     list_display = ['id', 'ingredientsName', 'water','energy','protein','fat'
                     ,'saccharides','price']
+
+class DishAndIngredient(models.Model):
+    dishID=models.IntegerField()
+    ingredientsID=models.IntegerField()
+    ingredientsWeight=models.FloatField()
+
+    def setBatchAttr(self,dishID,ingredientsID,ingredientsWeight):
+        self.dishID=dishID
+        self.ingredientsID=ingredientsID
+        self.ingredientsWeight=ingredientsWeight
+
+    def __str__(self):
+        return 'dishId:'+str(self.dishID)+',IngredientsId:'+str(self.ingredientsID)+',ingredientsWeight:'+str(self.ingredientsWeight)
+
+class DishIngredientsAdmin(admin.ModelAdmin):
+    list_display = ['id','dishID','ingredientsID','ingredientsWeight']

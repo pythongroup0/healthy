@@ -4,8 +4,6 @@ from manages.models import AdminInfo
 from manages import views
 from .apps import UserRegisterForm,UserLoginForm,AdminLoginForm
 
-def index(request):
-    return render(request,'userLogin.html')
 
 def userLogin(request):
     # 返回的错误信息
@@ -32,8 +30,10 @@ def adminLogin(request):
         form.setPost(request.POST)
         # 查询数据库
         admin = AdminInfo.objects.filter(adminname=form.adminname,password=form.password)
+        print(admin)
         if len(admin)>=1:
-            request.session['adminer']=form.adminname
+            print("hahhhaha")
+            # request.session['adminer']=form.adminname
             return redirect(views.administerManage)
         else:
             error_msg = '用户名或密码错误'

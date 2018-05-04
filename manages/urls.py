@@ -9,7 +9,7 @@ urlpatterns = [
     url('^adminChangeUser/(\d+)$',adminChangeUser),
     url('^adminSearchUser$',adminSearchUser),
 
-    url('^usermanage$',userManage),
+    url('^userManage/$',userManage),
     url('^I_changeUser/(\d+)', I_changeUser),
     url('^display$',display),
 

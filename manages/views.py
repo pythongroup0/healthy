@@ -3,8 +3,12 @@ from loginRegister.models import UserInfo
 from manages.models import DishInfo,IngredientsInfo
 from loginRegister.apps import UserRegisterForm
 from manages.apps import addDishForm,IngredientsForm
+from django.contrib.auth.decorators import login_required
+
 #管理员管理界面
+@login_required
 def administerManage(request):
+    print("hahahhah")
     user_list=UserInfo.objects.all()
     dish_list=DishInfo.objects.all()
     ingredients_list = IngredientsInfo.objects.all()
@@ -12,6 +16,7 @@ def administerManage(request):
 
 
 #管理员管理用户增删改查
+@login_required
 def adminAddUser(request):
     error_msg = ''
     form = UserRegisterForm()
@@ -31,9 +36,11 @@ def adminAddUser(request):
                 user.save()
                 return redirect(administerManage)
     return render(request, 'administerManage.html', { 'error_msg': error_msg})
+@login_required
 def adminDeleteUser(request,id):
     UserInfo.objects.filter(id=id).delete()
     return redirect(administerManage)
+@login_required
 def adminChangeUser(request,id):
     error_msg = ''
     form = UserRegisterForm()
@@ -52,6 +59,7 @@ def adminChangeUser(request,id):
                                                       senstive=form.allergic_food,perfer=form.taste)
         return redirect(administerManage)
     return render(request, 'administerManage.html', {'error_msg': error_msg})
+@login_required
 def adminSearchUser(request):
     error_msg = ''
     if request.method == 'POST':
@@ -74,6 +82,7 @@ def adminSearchUser(request):
     return render(request, 'administerManage.html', {'error_msg': error_msg})
 
 #管理员管理菜品的增删改查
+@login_required
 def adminAddDish(request):
     error_msg = ''
     form = addDishForm()
@@ -88,14 +97,16 @@ def adminAddDish(request):
                 error_msg = '菜品已存在'
             else:
                 dish = DishInfo()
-                dish.setBatchAttr(form.dishName, form.dishEnergy, form.dishPrice)
+                dish.setBatchAttr(form.dishName, form.dishEnergy, form.dishPrice,form.dishClassify,form.dishIngredients)
                 dish.save()
                 return redirect(administerManage)
     return render(request, 'administerManage.html', { 'error_msg': error_msg})
+@login_required
 def adminDeleteDish(request,id):
     print('aaa')
     DishInfo.objects.filter(id=id).delete()
     return redirect(administerManage)
+@login_required
 def adminChangeDish(request,id):
     error_msg = ''
     form = addDishForm()
@@ -110,9 +121,10 @@ def adminChangeDish(request,id):
                 error_msg = '菜品已存在'
             else:
                 DishInfo.objects.filter(id=id).update(dishName=form.dishName,dishEnergy=form.dishEnergy,
-                dishPrice=form.dishPrice)
+                dishPrice=form.dishPrice,dishClassify=form.dishClassify,dishIngredients=form.dishIngredients)
             return redirect(administerManage)
     return render(request, 'administerManage.html', {'error_msg': error_msg})
+@login_required
 def adminSearchDish(request):
     error_msg = ''
     if request.method == 'POST':
@@ -137,6 +149,7 @@ def adminSearchDish(request):
 
 #管理员管理食材的增删改查
 #管理员添加食材
+@login_required
 def adminAddIngredients(request):
     error_msg = ''
     form = IngredientsForm()
@@ -157,10 +170,12 @@ def adminAddIngredients(request):
                 return redirect(administerManage)
     return render(request, 'administerManage.html', {'error_msg': error_msg})
 #管理员删除食材
+@login_required
 def adminDeleteIngredients(request,id):
     IngredientsInfo.objects.filter(id=id).delete()
     return redirect(administerManage)
 #管理员修改食材
+@login_required
 def adminChangeIngredients(request,id):
     error_msg = ''
     form = IngredientsForm()
@@ -180,6 +195,7 @@ def adminChangeIngredients(request,id):
                 return redirect(administerManage)
     return render(request, 'administerManage.html', {'error_msg': error_msg})
 # 管理员查询食材
+@login_required
 def adminSearchIngredients(request):
     error_msg = ''
     if request.method == 'POST':
@@ -208,14 +224,19 @@ def adminSearchIngredients(request):
     return render(request, 'administerManage.html', {'error_msg': error_msg})
 
 
-
+@login_required
 def display(request):
     context = {}
     return render(request, 'display.html', context)
-def userManage(request):
-    user_list = UserInfo.objects.all()
-    return render(request, 'userManage.html', {'user_list': user_list})
 
+@login_required
+def userManage(request):
+    username=request.session['username']
+    user = UserInfo.objects.get(username=username)
+    print(user)
+    return render(request, 'userManage.html', {'user': user})
+
+@login_required
 def I_changeUser(request,id):
     error_msg = ''
     form = UserRegisterForm()

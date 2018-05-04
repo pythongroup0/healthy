@@ -8,11 +8,15 @@ class addDishForm():
     dishName = ''
     dishEnergy = ''
     dishPrice = ''
+    dishClassify=''
+    dishIngredients=''
 
     def setPost(self,post):
         self.dishName = post['dishName']
         self.dishEnergy = float(post['dishEnergy'])
         self.dishPrice = float(post['dishPrice'])
+        self.dishClassify = post['dishClassify']
+        self.dishIngredients=post['dishIngredients']
 
 
 class IngredientsForm():

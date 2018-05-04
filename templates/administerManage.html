@@ -201,6 +201,8 @@
                                             <th>菜品名</th>
                                             <th>能量</th>
                                             <th>总价格</th>
+                                            <th>分类</th>
+                                            <th>所含食材</th>
                                             <th>功能</th>
                                         </tr>
                                         {% for dish in dish_list %}
@@ -208,6 +210,8 @@
                                             <td>{{ dish.dishName }}</td>
                                             <td>{{ dish.dishEnergy }}</td>
                                             <td>{{ dish.dishPrice }}</td>
+                                            <td>{{ dish.dishClassify }}</td>
+                                            <td>{{ dish.dishIngredients }}</td>
                                             <td>
                                                 <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal2{{ dish.id }}"><i class="fa fa-plus"></i></button>
                                                 <div class="modal fade" id="exampleModal2{{ dish.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -227,6 +231,24 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <input type="text" class="form-control" name="dishPrice" placeholder="价格 :" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <select class="form-control" name="dishClassify">
+                                                                            <option selected="selected">菜品分类</option>
+                                                                                <option>肉类</option>
+                                                                                <option>蔬菜</option>
+                                                                                <option>谷物</option>
+                                                                                <option>水果</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="dishIngredients" placeholder="所含食材 :" required>
+                                                                        <select class="form-control" id="selectIngredients">
+                                                                            <option selected="selected">请选择</option>
+                                                                            {% for foo in ingredients_list %}
+                                                                                <option value="{{ foo.id }}">{{foo.ingredientsName  }}</option>
+                                                                            {% endfor %}
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
@@ -257,6 +279,12 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <input type="text" class="form-control"  name="dishPrice" placeholder="价格 :" value="{{ dish.dishPrice }}" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="dishClassify" placeholder="分类 :" value="{{ dish.dishClassify }}" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="dishIngredients" placeholder="所含食材 :" value="{{ dish.dishIngredients }}" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
@@ -439,26 +467,6 @@
     <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
     <script src="{% static 'js/jquery-1.12.0.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.js' %}"></script>
-    <!--左右侧显示的script代码-->
-    <script type="text/javascript">
-        $( $(".tm-right-column section")[0] ).show().siblings().hide();
-        $(".tm-nav-item a").on('click',function(){
-            if( this.innerHTML=="用户管理" ){
-                $( $(".tm-right-column section")[1] ).show().siblings().hide();
-            }else if( this.innerHTML=="菜品管理" ){
-                $( $(".tm-right-column section")[2] ).show().siblings().hide();
-            }else if( this.innerHTML=="食材管理" ){
-                $( $(".tm-right-column section")[3] ).show().siblings().hide();
-            }else{
-                $( $(".tm-right-column section")[4] ).show().siblings().hide();
-            }
-        })
-    </script>
-    <!--按钮添加功能的script代码-->
-    <script>
-        $('#exampleModal').on('show.bs.modal', function (event) {
-
-        })
-    </script>
+    <script src="{% static 'js/adminManage.js' %}"></script>
     </body>
 </html>

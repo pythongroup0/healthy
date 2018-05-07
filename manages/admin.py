@@ -5,4 +5,4 @@ from manages.models import *
 admin.site.register(AdminInfo,AdminInfoAdmin)
 admin.site.register(DishInfo,DishInfoAdmin)
 admin.site.register(IngredientsInfo,IngredientsInfoAdmin)
-admin.site.register(DishAndIngredient,DishIngredientsAdmin)
+

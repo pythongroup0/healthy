@@ -402,7 +402,6 @@
                             <table class="table table-bordered table-hover">
                                 <tr class="bg-info">
                                     <th>食材名字</th>
-                                    <th>水分</th>
                                     <th>能量</th>
                                     <th>蛋白质</th>
                                     <th>脂肪</th>
@@ -413,7 +412,6 @@
                                 {% for ing in ingredients_list.object_list %}
                                 <tr>
                                     <td>{{ ing.ingredientsName }}</td>
-                                    <td>{{ ing.water}}</td>
                                     <td>{{ ing.energy}}</td>
                                     <td>{{ ing.protein}}</td>
                                     <td>{{ ing.fat}}</td>
@@ -439,10 +437,6 @@
                                                                 <input type="text" class="form-control"
                                                                        name="ingredientsName" value=""
                                                                        placeholder="食材名 :" required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" name="water"
-                                                                       placeholder="水分 :" required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control" name="energy"
@@ -501,11 +495,6 @@
                                                                        name="ingredientsName"
                                                                        value="{{ ing.ingredientsName }}"
                                                                        placeholder="食材名 :" required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" name="water"
-                                                                       value="{{ ing.water }}" placeholder="水分 :"
-                                                                       required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control" name="energy"

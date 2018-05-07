@@ -21,7 +21,6 @@ class addDishForm():
 
 class IngredientsForm():
     ingredientsName = ''
-    water = 0.0
     energy = 0
     protein = 0.0
     fat = 0.0
@@ -30,7 +29,6 @@ class IngredientsForm():
 
     def setPost(self,post):
         self.ingredientsName = post['ingredientsName']
-        self.water = float(post['water'])
         self.energy  = int(post['energy'])
         self.protein = float(post['protein'])
         self.fat =float( post['fat'])

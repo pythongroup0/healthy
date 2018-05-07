@@ -16,15 +16,13 @@ class AdminInfoAdmin(admin.ModelAdmin):
 
 class IngredientsInfo(models.Model):
     ingredientsName=models.CharField(max_length=40)
-    water=models.FloatField(default=0.0)
     energy=models.IntegerField(default=0)
     protein=models.FloatField(default=0.0)
     fat=models.FloatField(default=0.0)
     saccharides=models.FloatField(default=0.0)
     price=models.FloatField(default=0.0)
-    def setBatchAttr(self,ingredientsName,water,energy,protein,fat,saccharides,price):
+    def setBatchAttr(self,ingredientsName,energy,protein,fat,saccharides,price):
         self.ingredientsName = ingredientsName
-        self.water = water
         self.energy= energy
         self.protein = protein
         self.fat = fat
@@ -60,5 +58,5 @@ class DishInfoAdmin(admin.ModelAdmin):
     list_display = ['id', 'dishName', 'dishEnergy', 'dishPrice','type']
 
 class IngredientsInfoAdmin(admin.ModelAdmin):
-    list_display = ['id', 'ingredientsName', 'water','energy','protein','fat'
+    list_display = ['id', 'ingredientsName','energy','protein','fat'
                     ,'saccharides','price']

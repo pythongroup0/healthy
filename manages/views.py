@@ -36,8 +36,8 @@ def administerManage(request):
     admin = AdminInfo.objects.get(id=id)
 
     user_list_pages = Paginator(user_list, 5).get_page(user_page)
-    dish_list_pages = Paginator(dish_list, 3).get_page(dish_page)
-    ingredients_list_pages = Paginator(ingredients_list, 3).get_page(ingredients_page)
+    dish_list_pages = Paginator(dish_list, 5).get_page(dish_page)
+    ingredients_list_pages = Paginator(ingredients_list, 5).get_page(ingredients_page)
     context = {'admin':admin,'user_list':user_list_pages,'dish_list':dish_list_pages,'ingredients_list':ingredients_list_pages
                ,'flag':flag}
     return render(request,'administerManage.html',context)
@@ -207,7 +207,7 @@ def adminAddIngredients(request):
                 error_msg = '用户名已存在'
             else:
                 ingredients = IngredientsInfo()
-                ingredients.setBatchAttr(form.ingredientsName, form.water, form.energy, form.protein, form.fat
+                ingredients.setBatchAttr(form.ingredientsName, form.energy, form.protein, form.fat
                                   , form.saccharides, form.price)
                 ingredients.save()
                 return redirect(administerManage)
@@ -232,7 +232,7 @@ def adminChangeIngredients(request,id):
             if len(Query_ingredients) >= 2:
                 error_msg = '用户名已存在'
             else:
-                IngredientsInfo.objects.filter(id=id).update(ingredientsName=form.ingredientsName, water=form.water,
+                IngredientsInfo.objects.filter(id=id).update(ingredientsName=form.ingredientsName,
                                                       energy=form.energy, protein=form.protein, fat=form.fat,
                                                              saccharides=form.saccharides, price=form.price)
                 return redirect(administerManage)
@@ -299,7 +299,6 @@ def I_changeUser(request,id):
                 UserInfo.objects.filter(id=id).update(username=form.username,password=form.password,
                 email=form.email,gender=form.sex,height=form.height,weight=form.weight,age=form.age,
                                                       senstive=form.allergic_food,perfer=form.taste)
-                user_list = UserInfo.objects.all()
         return redirect(userManage)
     return render(request, 'userManage.html', {'error_msg': error_msg})
 

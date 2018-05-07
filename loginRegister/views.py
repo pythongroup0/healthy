@@ -1,11 +1,8 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,render_to_response
 from loginRegister.models import UserInfo
 from manages.models import AdminInfo
 from manages import views
 from .apps import UserRegisterForm,UserLoginForm,AdminLoginForm
-
-def index(request):
-    return render(request,'userLogin.html')
 
 def userLogin(request):
     # 返回的错误信息
@@ -15,13 +12,17 @@ def userLogin(request):
         # 从表单填充数据
         form.setPost(request.POST)
         # 查询数据库
-        user = UserInfo.objects.filter(username=form.username,password=form.password)
-        if len(user)>=1:
-            request.session['username'] = form.username
+        users = UserInfo.objects.filter(username=form.username,password=form.password)
+        if len(users)>=1:
+            request.session['user_id'] = users[0].id
             return redirect(views.userManage)
         else:
             error_msg = '用户名或密码错误'
     return render(request,'userLogin.html',{'form':form,'error_msg':error_msg})
+
+def userWithDraw(request):
+    del request.session['user_id']
+    return render(request, 'userLogin.html')
 
 def adminLogin(request):
     error_msg = ''
@@ -31,13 +32,17 @@ def adminLogin(request):
         # 从表单填充数据
         form.setPost(request.POST)
         # 查询数据库
-        admin = AdminInfo.objects.filter(adminname=form.adminname,password=form.password)
-        if len(admin)>=1:
-            request.session['adminer']=form.adminname
+        admins = AdminInfo.objects.filter(adminname=form.adminname,password=form.password)
+        if len(admins)>=1:
+            request.session['admin_id'] = admins[0].id
             return redirect(views.administerManage)
         else:
             error_msg = '用户名或密码错误'
     return render(request,'adminLogin.html',{'form':form,'error_msg':error_msg})
+
+def adminWithDraw(request):
+    del request.session['admin_id']
+    return render(request, 'adminLogin.html')
 
 def register(request):
     error_msg = ''
@@ -53,7 +58,6 @@ def register(request):
                 error_msg = '用户名已存在'
             else:
                 user = UserInfo()
-                request.session['username'] = form.username
                 user.setBatchAttr(form.username,form.password,form.email,form.sex,form.height,form.weight
                               ,form.age,form.allergic_food,form.taste)
                 user.save()

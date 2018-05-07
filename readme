@@ -1,0 +1,2 @@
+安装分页功能
+pip install django-pure-pagination

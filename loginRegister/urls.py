@@ -2,9 +2,12 @@ from django.conf.urls import url
 from loginRegister.views import *
 
 urlpatterns = [
-
-    url('^$',index),
+    url('^$',userLogin),
     url('^userLogin$',userLogin),
+    url('^userlogin$', userLogin),
     url('^adminLogin$',adminLogin),
-    url('^register$',register)
+    url('^adminlogin$',adminLogin),
+    url('^register$',register),
+    url('^loginWithDraw',userWithDraw),
+    url('^adminWithDraw',adminWithDraw),
 ]

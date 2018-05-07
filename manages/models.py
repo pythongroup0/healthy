@@ -11,24 +11,7 @@ class AdminInfo(models.Model):
 class AdminInfoAdmin(admin.ModelAdmin):
     list_display = ['id','adminname','password']
 
-class DishInfo(models.Model):
-    #菜品名称
-    dishName = models.CharField(max_length = 30)
-    #菜品能量
-    dishEnergy = models.FloatField()
-    #菜品价格
-    dishPrice = models.FloatField()
 
-    def setBatchAttr(self,dishName,dishEnergy,dishPrice):
-        self.dishName = dishName
-        self.dishEnergy = dishEnergy
-        self.dishPrice = dishPrice
-
-    def __str__(self):
-        return 'dishName:'+self.dishName+',dishEnergy:'+str(self.dishEnergy)+',dishPrice:'+str(self.dishPrice)
-
-class DishInfoAdmin(admin.ModelAdmin):
-    list_display = ['id', 'dishName', 'dishEnergy', 'dishPrice']
 
 
 class IngredientsInfo(models.Model):
@@ -51,6 +34,30 @@ class IngredientsInfo(models.Model):
     def __str__(self):
         return 'ingredientsName:'+self.ingredientsName+",energy:"+\
                str(self.energy)+",price:"+str(self.price)
+
+class DishInfo(models.Model):
+    # 菜品名称
+    dishName = models.CharField(max_length=30)
+    # 菜品能量
+    dishEnergy = models.FloatField()
+    # 菜品价格
+    dishPrice = models.FloatField()
+    # 包含的食材
+    ingredients = models.ManyToManyField(IngredientsInfo)
+    # 分类
+    type = models.CharField(max_length=20,default='')
+
+    def setBatchAttr(self, dishName, dishEnergy, dishPrice):
+        self.dishName = dishName
+        self.dishEnergy = dishEnergy
+        self.dishPrice = dishPrice
+
+    def __str__(self):
+        return 'dishName:' + self.dishName + ',dishEnergy:' + str(self.dishEnergy) + ',dishPrice:' + str(
+            self.dishPrice)
+
+class DishInfoAdmin(admin.ModelAdmin):
+    list_display = ['id', 'dishName', 'dishEnergy', 'dishPrice','type']
 
 class IngredientsInfoAdmin(admin.ModelAdmin):
     list_display = ['id', 'ingredientsName', 'water','energy','protein','fat'

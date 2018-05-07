@@ -4,12 +4,13 @@ from manages.views import *
 urlpatterns = [
     url('^administermanage$',administerManage),
     #管理员对于用户的增删改查
+    url('^adminmanage/displayuserinfo$',displayUserInfo),
     url('^adminDeleteUser/(\d+)$',adminDeleteUser),
     url('^adminAddUser$',adminAddUser),
     url('^adminChangeUser/(\d+)$',adminChangeUser),
     url('^adminSearchUser$',adminSearchUser),
 
-    url('^usermanage$',userManage),
+    url('^userManage$',userManage),
     url('^I_changeUser/(\d+)', I_changeUser),
     url('^display$',display),
 
